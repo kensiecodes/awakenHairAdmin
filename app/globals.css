@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  font-family: "Proza Libre";
+  font-weight: 400;
+  color: #3c403d;
+}
+
+h1 {
+  font-family: "Cormorant Infant", serif;
+}

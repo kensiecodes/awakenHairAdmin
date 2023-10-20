@@ -1,30 +1,25 @@
 "use client";
 import { useSession, signIn, signOut } from "next-auth/react";
+import NavBar from "@/app/components/Navbar";
 
 export default function Home() {
   const { data: session } = useSession();
-  if (!session) {
-    return (
-      <main className="">
-        <div className="bg-blue-900 w-screen h-screen flex items-center">
-          <div className="text-center w-full">
+
+  return (
+    <main className="">
+      <div className="">
+        <div className="text-center m-auto w-full">
+          {session && <NavBar session={session} />}
+          {!session ? (
             <button
               onClick={() => signIn("google")}
               className="bg-white p-2 px-4 rounded-lg"
             >
               Login with Google
             </button>
-          </div>
+          ) : null}
         </div>
-      </main>
-    );
-  } else {
-    return (
-      <>
-        <div className="bg-blue-900 min-h-screen">
-          logged in {session.user.email}
-        </div>
-      </>
-    );
-  }
+      </div>
+    </main>
+  );
 }
