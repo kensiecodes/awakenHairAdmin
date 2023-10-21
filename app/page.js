@@ -8,8 +8,7 @@ export default function Home() {
   return (
     <main className="">
       <div className="">
-        <div className="text-center m-auto w-full">
-          {session && <NavBar session={session} />}
+        <div className=" m-auto bg-white">
           {!session ? (
             <button
               onClick={() => signIn("google")}
@@ -17,7 +16,11 @@ export default function Home() {
             >
               Login with Google
             </button>
-          ) : null}
+          ) : (
+            <>
+              <p>dashboard</p>
+            </>
+          )}
         </div>
       </div>
     </main>

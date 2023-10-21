@@ -1,3 +1,5 @@
+"use client";
+
 import Sparkles from "./icons/Sparkles";
 import Home from "./icons/Home";
 import Order from "./icons/Order";
@@ -5,7 +7,29 @@ import Settings from "./icons/Settings";
 import Products from "./icons/Products";
 import Link from "next/link";
 
+import { useState } from "react";
+import { useSession, signIn, signOut } from "next-auth/react";
+
 export default function Navbar({ session }) {
+  const findActivePage = (url) => {
+    if (url.includes("dashboard")) {
+      return "dashboard";
+    } else if (url.includes("products")) {
+      return "products";
+    } else if (url.includes("orders")) {
+      return "orders";
+    } else if (url.includes("settings")) {
+      return "settings";
+    } else {
+      return null;
+    }
+  };
+  const [activePage, setActivePage] = useState(
+    findActivePage(window.location.href)
+  );
+  const inactiveLink =
+    "transition ease-in-out duration-150 hover:bg-white w-40 hover:text-charcoal flex px-1 rounded-lg gap-1  py-1 ";
+  const activeLink = inactiveLink + "bg-storm text-charcoal";
   return (
     <>
       <header className="p-4 dark:bg-jade dark:text-gray-100 md:w-48">
@@ -14,7 +38,7 @@ export default function Navbar({ session }) {
             <Sparkles />
             <a
               rel="noopener noreferrer"
-              href="#"
+              href="/"
               aria-label="Back to homepage"
               className="flex items-center p-2  md:border-b-2 md:border-white md:mb-2 "
             >
@@ -22,7 +46,7 @@ export default function Navbar({ session }) {
             </a>
           </div>
           {session && (
-            <div className="flex items-center px-1 my-5 max-md:hidden">
+            <div className="md:flex items-center px-1 my-5 hidden">
               Admin: {session.user.name}
             </div>
           )}
@@ -31,8 +55,11 @@ export default function Navbar({ session }) {
             <li className="flex">
               <Link
                 rel="noopener noreferrer"
-                href="#"
-                className="transition ease-in-out duration-150 hover:bg-white w-40 hover:text-jade flex px-1 rounded-lg gap-1 j  py-1  border-b-2 dark:border-transparent"
+                href="/dashboard"
+                onClick={() => setActivePage("dashboard")}
+                className={
+                  activePage == "dashboard" ? activeLink : inactiveLink
+                }
               >
                 <Home />
                 Dashboard
@@ -41,8 +68,9 @@ export default function Navbar({ session }) {
             <li className="flex">
               <Link
                 rel="noopener noreferrer"
-                href="#"
-                className="transition ease-in-out duration-150 hover:bg-white w-40 hover:text-jade flex px-1 rounded-lg gap-1 j  py-1  border-b-2 dark:border-transparent"
+                href="/products"
+                onClick={() => setActivePage("products")}
+                className={activePage == "products" ? activeLink : inactiveLink}
               >
                 <Products />
                 Products
@@ -51,8 +79,9 @@ export default function Navbar({ session }) {
             <li className="flex">
               <Link
                 rel="noopener noreferrer"
-                href="#"
-                className="transition ease-in-out duration-150 hover:bg-white w-40 hover:text-jade flex px-1 rounded-lg gap-1 j  py-1  border-b-2 dark:border-transparent"
+                href="/orders"
+                onClick={() => setActivePage("orders")}
+                className={activePage == "orders" ? activeLink : inactiveLink}
               >
                 <Order />
                 Orders
@@ -61,8 +90,9 @@ export default function Navbar({ session }) {
             <li className="flex">
               <Link
                 rel="noopener noreferrer"
-                href="#"
-                className="transition ease-in-out duration-150 hover:bg-white w-40 hover:text-jade flex px-1 rounded-lg gap-1 j  py-1  border-b-2 dark:border-transparent"
+                href="/settings"
+                onClick={() => setActivePage("settings")}
+                className={activePage == "settings" ? activeLink : inactiveLink}
               >
                 <Settings />
                 Settings
@@ -73,16 +103,13 @@ export default function Navbar({ session }) {
             <>
               <div className="items-center flex-shrink-0 hidden md:flex flex-col">
                 <button
-                  className="self-center px-8 py-3 rounded"
+                  className="mt-2 self-center px-5 py-3 font-semibold rounded hover:scale-110 transition ease-in-out duration-150 dark:bg-storm dark:text-charcoal"
                   onClick={() => signIn("google")}
                 >
                   Sign in
                 </button>
-                <button className="self-center px-8 py-3 font-semibold rounded dark:bg-storm dark:text-charcoal">
-                  Sign up
-                </button>
               </div>
-              <button className="p-4 lg:hidden">
+              <button className="p-4 md:hidden">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

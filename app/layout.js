@@ -27,8 +27,12 @@ export default async function RootLayout({ children }) {
       </head>
       <body className="bg-jade">
         <SessionProvider session={session}>
-          <Navbar session={session} />
-          {children}
+          <div className="md:flex">
+            <Navbar session={session} />
+            <div className="max-md:mx-5 rounded-xl mt-10 p-10  md:w-5/6 min-h-[90vh] overflow-y-scroll m-auto bg-white">
+              {children}
+            </div>
+          </div>
         </SessionProvider>
       </body>
     </html>
