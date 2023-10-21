@@ -10,31 +10,12 @@ import Link from "next/link";
 
 import { useState, useEffect } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const { data: session } = useSession();
 
-  const findActivePage = (url) => {
-    if (url.includes("dashboard")) {
-      return "dashboard";
-    } else if (url.includes("products")) {
-      return "products";
-    } else if (url.includes("orders")) {
-      return "orders";
-    } else if (url.includes("settings")) {
-      return "settings";
-    } else {
-      return null;
-    }
-  };
-
-  const [activePage, setActivePage] = useState(
-    findActivePage(window.location.href)
-  );
-
-  useEffect(() => {
-    setActivePage(findActivePage(window.location.href));
-  }, [findActivePage(window.location.href)]);
+  const pathname = usePathname();
 
   const inactiveLink =
     "transition ease-in-out duration-150 hover:bg-white w-40 hover:text-charcoal flex px-1 rounded-lg gap-1  py-1 ";
@@ -67,10 +48,7 @@ export default function Navbar() {
               <Link
                 rel="noopener noreferrer"
                 href="/dashboard"
-                onClick={() => setActivePage("dashboard")}
-                className={
-                  activePage == "dashboard" ? activeLink : inactiveLink
-                }
+                className={pathname == "/dashboard" ? activeLink : inactiveLink}
               >
                 <Home />
                 Dashboard
@@ -80,8 +58,7 @@ export default function Navbar() {
               <Link
                 rel="noopener noreferrer"
                 href="/products"
-                onClick={() => setActivePage("products")}
-                className={activePage == "products" ? activeLink : inactiveLink}
+                className={pathname == "/products" ? activeLink : inactiveLink}
               >
                 <Products />
                 Products
@@ -91,8 +68,7 @@ export default function Navbar() {
               <Link
                 rel="noopener noreferrer"
                 href="/orders"
-                onClick={() => setActivePage("orders")}
-                className={activePage == "orders" ? activeLink : inactiveLink}
+                className={pathname == "/orders" ? activeLink : inactiveLink}
               >
                 <Order />
                 Orders
@@ -102,8 +78,7 @@ export default function Navbar() {
               <Link
                 rel="noopener noreferrer"
                 href="/settings"
-                onClick={() => setActivePage("settings")}
-                className={activePage == "settings" ? activeLink : inactiveLink}
+                className={pathname == "/settings" ? activeLink : inactiveLink}
               >
                 <Settings />
                 Settings
@@ -120,6 +95,7 @@ export default function Navbar() {
                   Sign in
                 </button>
               </div>
+              {/* dropdown */}
               <button className="p-4 md:hidden">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
