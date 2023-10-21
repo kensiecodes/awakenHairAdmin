@@ -7,10 +7,12 @@ import Settings from "./icons/Settings";
 import Products from "./icons/Products";
 import Link from "next/link";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
 
-export default function Navbar({ session }) {
+export default function Navbar() {
+  const { data: session } = useSession();
+
   const findActivePage = (url) => {
     if (url.includes("dashboard")) {
       return "dashboard";
@@ -24,12 +26,20 @@ export default function Navbar({ session }) {
       return null;
     }
   };
+
   const [activePage, setActivePage] = useState(
     findActivePage(window.location.href)
   );
+
+  useEffect(() => {
+    setActivePage(findActivePage(window.location.href));
+  }, [findActivePage(window.location.href)]);
+
   const inactiveLink =
     "transition ease-in-out duration-150 hover:bg-white w-40 hover:text-charcoal flex px-1 rounded-lg gap-1  py-1 ";
+
   const activeLink = inactiveLink + "bg-storm text-charcoal";
+
   return (
     <>
       <header className="p-4 dark:bg-jade dark:text-gray-100 md:w-48">

@@ -1,4 +1,7 @@
+import { useSession } from "next-auth/react";
+
 const Products = () => {
+  const { data: session } = useSession();
   return <>Products</>;
 };
 
