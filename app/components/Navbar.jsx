@@ -5,6 +5,7 @@ import Home from "./icons/Home";
 import Order from "./icons/Order";
 import Settings from "./icons/Settings";
 import Products from "./icons/Products";
+import Logout from "./icons/Logout";
 import Link from "next/link";
 
 import { useState, useEffect } from "react";
@@ -140,6 +141,16 @@ export default function Navbar() {
             <>
               <div className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent md:hidden">
                 Admin: {session.user.name}
+              </div>
+              <div className="flex justify-end">
+                <button
+                  className="mt-2"
+                  onClick={() => {
+                    signOut();
+                  }}
+                >
+                  <Logout />
+                </button>
               </div>
             </>
           )}
