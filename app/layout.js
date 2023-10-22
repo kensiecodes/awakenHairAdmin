@@ -11,6 +11,7 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   const session = await getServerSession();
+  console.log();
   return (
     <html lang="en">
       <head>
@@ -28,7 +29,7 @@ export default async function RootLayout({ children }) {
       <body className="bg-jade">
         <SessionProvider session={session}>
           <div className="md:flex">
-            <Navbar session={session} />
+            <Navbar />
             <div className="max-md:mx-5 rounded-xl mt-10 p-10  md:w-5/6 min-h-[90vh] overflow-y-scroll m-auto bg-white">
               {children}
             </div>

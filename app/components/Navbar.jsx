@@ -89,7 +89,7 @@ export default function Navbar() {
             <>
               <div className="items-center flex-shrink-0 hidden md:flex flex-col">
                 <button
-                  className="mt-2 self-center px-5 py-3 font-semibold rounded hover:scale-110 transition ease-in-out duration-150 dark:bg-storm dark:text-charcoal"
+                  className="btn-primary"
                   onClick={() => signIn("google")}
                 >
                   Sign in
