@@ -8,21 +8,8 @@ const NewProducts = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [goToProducts, setGoToProducts] = useState(false);
 
   const router = useRouter();
-
-  async function createProduct(event) {
-    event.preventDefault();
-
-    const data = { title, description, price };
-    await axios.post("/products/api", data);
-    setGoToProducts(true);
-  }
-  if (goToProducts) {
-    router.push("/products");
-    //
-  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
