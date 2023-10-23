@@ -1,6 +1,7 @@
 import "./globals.css";
 
 import { getServerSession } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]/route";
 import SessionProvider from "./components/SessionProvider";
 import Navbar from "./components/Navbar";
 
@@ -10,7 +11,7 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
   console.log();
   return (
     <html lang="en">

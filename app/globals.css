@@ -25,3 +25,19 @@ textarea:focus {
 .btn-primary {
   @apply mt-2 self-center px-5 py-3 font-semibold rounded hover:scale-110 transition ease-in-out duration-150 dark:bg-storm dark:text-charcoal;
 }
+
+table.basic {
+  @apply w-full;
+}
+
+table.basic thead tr td {
+  @apply bg-jade bg-opacity-25;
+}
+
+table.basic tr td {
+  @apply border p-1 border-greenish;
+}
+
+table.basic a {
+  @apply bg-leaf bg-opacity-25 inline-flex rounded-md py-1 px-2 text-sm;
+}
