@@ -26,6 +26,14 @@ textarea:focus {
   @apply mt-2 self-center px-5 py-3 font-semibold rounded hover:scale-110 transition ease-in-out duration-150 dark:bg-storm dark:text-charcoal;
 }
 
+.btn-secondary {
+  @apply mt-2 self-center px-5 py-3 font-semibold rounded hover:scale-110 transition ease-in-out duration-150 dark:bg-jade dark:bg-opacity-40 dark:text-charcoal;
+}
+
+.btn-alert {
+  @apply mt-2 self-center px-5 py-3 font-semibold rounded hover:scale-110 transition ease-in-out duration-150 dark:bg-alert dark:text-white;
+}
+
 table.basic {
   @apply w-full;
 }

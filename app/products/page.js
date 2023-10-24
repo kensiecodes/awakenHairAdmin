@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Edit from "../components/icons/Edit";
+import Delete from "../components/icons/Delete";
 
 const getProducts = async () => {
   try {
@@ -39,6 +40,13 @@ export default async function Products() {
               <td>
                 <Link className="" href={`/products/edit/${products._id}`}>
                   <Edit /> Edit
+                </Link>
+                <Link
+                  className="ml-2"
+                  href={`/products/delete/${products._id}`}
+                >
+                  <Delete />
+                  Delete
                 </Link>
               </td>
             </tr>

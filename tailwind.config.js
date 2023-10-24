@@ -13,6 +13,7 @@ module.exports = {
         charcoal: "#3c403d",
         jade: "#a3bcb6",
         greenish: "#b6b782",
+        alert: "#df8097",
       },
     },
   },

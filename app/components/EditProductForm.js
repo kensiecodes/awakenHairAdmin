@@ -61,7 +61,7 @@ export default function EditProductForm({ id, title, description, price }) {
         type="text"
         placeholder="Price"
         required={true}
-        value={price}
+        value={newPrice}
         onChange={(e) => {
           setNewPrice(e.target.value);
         }}
