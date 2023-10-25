@@ -9,10 +9,10 @@ const DeleteButton = ({ id }) => {
     });
 
     if (res.ok) {
-      router.redirect("/products");
+      router.push("/products");
+      router.refresh();
     }
   };
-  console.log(`id at deletebutton: ${id}`);
   return (
     <button onClick={deleteProductById} className="btn-alert">
       Yes

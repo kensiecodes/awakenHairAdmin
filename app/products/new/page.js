@@ -19,7 +19,7 @@ const NewProducts = () => {
     }
 
     try {
-      const res = await fetch("/products/api", {
+      const res = await fetch("/api/products", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -29,6 +29,7 @@ const NewProducts = () => {
 
       if (res.ok) {
         router.push("/products");
+        router.refresh();
       } else {
         throw new Error("Failed to create a topic");
       }

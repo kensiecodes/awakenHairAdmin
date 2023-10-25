@@ -19,15 +19,15 @@ export default function EditProductForm({ id, title, description, price }) {
         headers: {
           "Content-type": "application/json",
         },
-        body: JSON.stringify({ newTitle, newDescription }),
+        body: JSON.stringify({ newTitle, newDescription, newPrice }),
       });
 
       if (!res.ok) {
         throw new Error("Failed to update topic");
       }
 
+      router.push("/products");
       router.refresh();
-      router.push("/dashboard");
     } catch (error) {
       console.log(error);
     }

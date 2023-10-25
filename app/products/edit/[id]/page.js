@@ -20,9 +20,15 @@ const getProductById = async (id) => {
 
 export default async function EditProduct({ params }) {
   const { id } = params;
-  console.log(params);
   const { product } = await getProductById(id);
   const { title, description, price } = product;
 
-  return <EditProductForm id={id} title={title} description={description} />;
+  return (
+    <EditProductForm
+      id={id}
+      title={title}
+      description={description}
+      price={price}
+    />
+  );
 }
