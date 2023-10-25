@@ -14,9 +14,19 @@ const DeleteButton = ({ id }) => {
     }
   };
   return (
-    <button onClick={deleteProductById} className="btn-alert">
-      Yes
-    </button>
+    <>
+      <button onClick={deleteProductById} className="btn-alert">
+        Yes
+      </button>
+      <button
+        onClick={() => {
+          router.push("/products");
+        }}
+        className="btn-secondary ml-5"
+      >
+        No
+      </button>
+    </>
   );
 };
 
